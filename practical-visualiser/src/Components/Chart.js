@@ -34,7 +34,7 @@ class Chart extends Component{
                             display:true,
                             text:'Total number of commits to repositories',
                             fontSize:40,
-                            fontColor:'white'
+                            fontColor:'black'
                         },
                         legend:{
                             display:this.props.displayLegend

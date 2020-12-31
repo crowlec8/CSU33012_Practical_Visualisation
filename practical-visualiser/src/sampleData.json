@@ -1,0 +1,27 @@
+[
+    {
+        "name": "Mary",
+        "numberOfCommits":28
+    },
+    {
+        "name": "John",
+        "numberOfCommits":14
+    },
+    {
+        "name": "Sarah",
+        "numberOfCommits":10
+    },
+    {
+        "name": "Ryan",
+        "numberOfCommits":26
+    },
+    {
+        "name": "Cian",
+        "numberOfCommits":18
+    },
+    {
+        "name": "Emma",
+        "numberOfCommits":9
+    }
+]
+

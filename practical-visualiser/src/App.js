@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Chart from './Components/Chart';
+import sampleData from './sampleData.json';
 
 class App extends Component {
   constructor(){
@@ -15,16 +16,21 @@ class App extends Component {
   }
 
   getChartData(){
-    //Ajax call here
+    var sampleLabels = [];
+    var sampleCommits = []
+    for(var i = 0; i < sampleData.length; i++){
+      sampleLabels.push(sampleData[i].name)
+      sampleCommits.push(sampleData[i].numberOfCommits)
+    }
     this.setState({
       chartData:{
-        labels: ['Mary', 'John', 'Sarah', 'Ryan', 'Cian', 'Emma'],
+        labels:sampleLabels,
         datasets:[
-            {
-                label:'Commits', // Needed if using legend, no need in this case
-                data:[28, 14, 10, 26, 18, 9],
-                backgroundColor:'rgba(255, 199, 132, 0.6)'                        
-            }
+          {
+            label:'Commits', // Needed if using legend, no need in this case
+            data:sampleCommits,
+            backgroundColor:'rgba(55, 199, 232, 10)'
+          }
         ]
       }
     });
@@ -33,10 +39,7 @@ class App extends Component {
   render(){
     return (
       <div className="App">
-        <style>{'body {background-color: red;}'}</style>
-        <header className="App-header">
-          <Chart chartData={this.state.chartData} />
-        </header>
+        <Chart chartData={this.state.chartData} />
       </div>
     );
   }
