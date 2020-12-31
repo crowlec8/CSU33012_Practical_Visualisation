@@ -1,32 +1,45 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
-//import MyChart from './MyChart';
 import Chart from './Components/Chart';
 
-/*const data1 = [
-  {label:"Mary", value:12},
-  {label:"John", value:36},
-  {label:"Ryan", value:15}, 
-  {label:"Sarah", value:25},
-  {label:"Cian", value:35},
-  {label:"Jack", value:10},
-  {label:"Sarah", value:40} 
-]
-const data2 = [5, 10, 15, 20, 25, 30];
-//const data3 = [10, 5, 10, 5, 10];
+class App extends Component {
+  constructor(){
+    super();
+    this.state = {
+      chartData:{}
+    }
+  }
 
-const w = 500;
-const h = 400;*/
+  componentWillMount(){
+    this.getChartData();
+  }
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <Chart />
-      </header>
-    </div>
-  );
+  getChartData(){
+    //Ajax call here
+    this.setState({
+      chartData:{
+        labels: ['Mary', 'John', 'Sarah', 'Ryan', 'Cian', 'Emma'],
+        datasets:[
+            {
+                label:'Commits', // Needed if using legend, no need in this case
+                data:[28, 14, 10, 26, 18, 9],
+                backgroundColor:'rgba(255, 199, 132, 0.6)'                        
+            }
+        ]
+      }
+    });
+  }
+
+  render(){
+    return (
+      <div className="App">
+        <style>{'body {background-color: red;}'}</style>
+        <header className="App-header">
+          <Chart chartData={this.state.chartData} />
+        </header>
+      </div>
+    );
+  }
 }
 
 export default App;
-//<MyChart data={data2} w={w} h={h} color="green"/>

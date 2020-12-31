@@ -1,21 +1,18 @@
 import React, {Component} from 'react';
 import {Bar, Line, Pie} from 'react-chartjs-2';
+import color from 'color';
 
 class Chart extends Component{
     constructor(props){
         super(props);
         this.state = {
-            chartData:{
-                labels: ['Mary', 'John', 'Sarah', 'Ryan', 'Cian', 'Emma'],
-                datasets:[
-                    {
-                        label:'Commits',
-                        data:[32, 14, 10, 26, 18, 9],
-                        backgroundColor:'rgba(255, 99, 132, 0.6)'                        
-                    }
-                ]
-            }
+            chartData:props.chartData
         }
+    }
+
+    static defaultProps = {
+        displayTitle:true,
+        displayLegend: false
     }
 
     render(){
@@ -23,8 +20,26 @@ class Chart extends Component{
             <div className="chart">
                 <Bar
                     data={this.state.chartData}
+                    width = '500'
+                    height = '400'
                     options={{
-                        maintainAspectRation: false
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: this.props.displayTitle
+                                }
+                            }]
+                        },
+                        title:{
+                            display:true,
+                            text:'Total number of commits to repositories',
+                            fontSize:40,
+                            fontColor:'white'
+                        },
+                        legend:{
+                            display:this.props.displayLegend
+                        },
+
                     }}
                 />
             </div>
