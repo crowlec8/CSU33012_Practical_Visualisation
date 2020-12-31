@@ -17,16 +17,16 @@ class BarChart extends Component {
             .attr("width", w)
             .attr("height", h)
             .style("background-color", "#cccccc")
-            .style("padding", 10)
+            .style("padding", 20)
             .style("margin-left", 50);
 
         accessToRef.selectAll("rect")
             .data(data)
             .enter()
             .append("rect")
-            .attr("x", (d, i) => i * 145)
+            .attr("x", (d, i) => i * 70)
             .attr("y", (d, i) => h - 10 * d)
-            .attr("width", 120)
+            .attr("width", 65)
             .attr("height", (d, i) => d * 10)
             .attr("fill", color);
     }
@@ -36,5 +36,5 @@ class BarChart extends Component {
             <div ref={this.myRef}></div>
         </>
     }
-}  
-export default BarChart;
+}    
+export default BarChart
