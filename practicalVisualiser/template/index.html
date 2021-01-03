@@ -1,34 +1,31 @@
 <html>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
-<body>
-    <h1>Hello World</h1>
-    <canvas id="myChart"></canvas>
-
-
+<body> 
+    <h1> Total Commits in repositories </h1>
+    <canvas id="myChart"></canvas> 
 </body>
 
-
-<script>
-
-var ctx = document.getElementById('myChart').getContext('2d');
-var chart = new Chart(ctx, {
+<script> //taken from chartjs.org
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var chart = new Chart(ctx, {
     // The type of chart we want to create
     type: 'bar',
 
     // The data for our dataset
     data: {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+        labels: {{varC|safe}}, //passing data from views.py
         datasets: [{
-            label: 'My First dataset',
+            label: 'Number of Commits per Repository',
             backgroundColor: 'rgb(255, 99, 132)',
             borderColor: 'rgb(255, 99, 132)',
-            data: [0, 10, 5, 2, 20, 30, 45]
+            data: {{varD|safe}} //passing data from views.py
         }]
     },
 
     // Configuration options go here
     options: {}
-});
+}); 
 </script>
+
 </html>
