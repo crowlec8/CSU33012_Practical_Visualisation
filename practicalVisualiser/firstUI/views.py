@@ -2,60 +2,50 @@ from django.shortcuts import render
 from github import Github
 
 # Create your views here.
-token = '0d00218b7cf191f95accfec3cb5ceff8de5f4ad0'
-g = Github(token) #token used for more github
-gRepo = 'github-yesod'
-username = 'esjmb'
-user = g.get_user(username) #code taken from previous api project
-repo = user.get_repo(gRepo)
-contributors = repo.get_contributors()
+g = Github(token) #take token from github
+repository = 'CSU33012_Practical_visualisation'
+username = 'crowlec8'
+user = g.get_user(username) 
+repo = user.get_repo(repository)
+contributors = repo.get_contributors() #code taken from previous api project
 
-def getRepoNames():
-    repoNameList = []
-    for repo in user.get_repos():
-        repoName = repo.name
-        repoNameList.append(repoName)
-    return repoNameList
+#function used to return lists of repositories
+#def getRepoNames():
+#    repoNameList = []
+#    for repo in user.get_repos():
+#        repoName = repo.name
+#        repoNameList.append(repoName)
+#    return repoNameList
 
-def getTotalRepoCommits():
-    totalCommitsLists = []
-    for repo in user.get_repos():
-        totalCommits = repo.get_commits().totalCount
-        totalCommitsLists.append(totalCommits)
-    return totalCommitsLists
+#function used to return lists of commits per repositories
+#def getTotalRepoCommits():
+#    totalCommitsLists = []
+#    for repo in user.get_repos():
+#        totalCommits = repo.get_commits().totalCount
+#        totalCommitsLists.append(totalCommits)
+#    return totalCommitsLists
 
+#function used to return lists of contributors
 def getContributorsRepo():
     listOfContributors = []
     for contributor in contributors:
-        contributorName = contributor.name
-        print(contributorName)
+        contributorName = contributor.login
         listOfContributors.append(contributorName)
     return listOfContributors
 
+#function used to return lists of contributers' commits
 def getContributorsCommits():
     listOfCommits = []
     for contributor in contributors:
         contributorCommits = repo.get_commits(author = contributor.login).totalCount
-        print(contributorCommits)
         listOfCommits.append(contributorCommits)
     return listOfCommits
 
-#for contributor in contributors:
-#    contributorName = contributor.name
-#    contributorCommits = repo.get_commits(author = contributor.login).totalCount
-#    print(contributorName)
-#   print(contributorCommits)
-#    listOfContributors.append(contributorName)
-#    listOfCommits.append(contributorCommits)
-
-
-
-
 
 def indexPage(request):
-    varA = getRepoNames()
-    varB = getTotalRepoCommits()
+#    varA = getRepoNames()
+#    varB = getTotalRepoCommits()
     varC = getContributorsRepo()
     varD = getContributorsCommits()
-    context={'varA':varA,'varB':varB,'varC':varC,'varD':varD}
+    context={'varC':varC,'varD':varD}
     return render(request,'index.html',context)
