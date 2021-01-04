@@ -3,8 +3,8 @@ from github import Github
 
 # Create your views here.
 g = Github(token) #take token from github
-repository = 'CSU33012_Practical_visualisation'
-username = 'crowlec8'
+repository = 'CSU33012_Practical_visualisation' #pass any repository linked to username here
+username = 'crowlec8' #pass any username in here
 user = g.get_user(username) 
 repo = user.get_repo(repository)
 contributors = repo.get_contributors() #code taken from previous api project
